@@ -73,3 +73,14 @@ a single large architecture or loss change.
 See individual scripts in this folder for full methodology and the
 verification scripts (test_degradation_ordering.py, test_fixed_noise_level.py,
 calibrate_synthetic_range.py) for how the calibration was derived.
+
+9. **Per-category noise recalibration**: extended the calibrated synthetic
+   degradation to use a distinct speckle_level range per category, centered
+   on each category's own measured real noise level (sparse_particles_on_substrate
+   0.1039 down to wires_rods 0.0862), instead of one global range for all
+   categories. Result: +0.005 dB overall -- a null result, within run-to-run
+   noise. Direction was consistent with intent (the boosted category improved
+   slightly, the reduced-range category dropped slightly) but the effect size
+   was too small to matter. Consistent with the broader finding that
+   structural recoverability, not fine noise-level mismatch, is the real
+   bottleneck for the weak categories. NOT used in the final checkpoint.
