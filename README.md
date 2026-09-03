@@ -49,7 +49,7 @@ Real batch-8 throughput (matching `run.py`'s exact grading pipeline): **3.42 ms/
 
 ## ⚠️ Mandatory submission entry point: `run.py`
 
-Per KLA's Final Submission Check announcement, the graded entry point for this submission is `run.py`, not `inference.py`. Run it exactly as:
+ Run it exactly as:
 
 ```bash
 python run.py <input-dir> <output-dir>
