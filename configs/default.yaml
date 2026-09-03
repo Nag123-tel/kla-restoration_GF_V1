@@ -1,0 +1,27 @@
+# Default training configuration for the KLA restoration model.
+# CLI args passed to train.py override these values.
+
+
+# --- Data ---
+noisy_dir: "data/train/NoisyLR"   # placeholder -- override with --noisy_dir, point at your NoisyLR folder
+gt_dir: "data/train/GT"           # placeholder -- override with --gt_dir, point at your GT folder
+synth_from_gt_dir: null   # optional: set to a folder of GT-only images to synthesize extra pairs
+val_split: 0.1
+
+# --- Model / data geometry ---
+patch_size: 64      # NoisyLR training crop size (GT crop = patch_size * scale)
+scale: 2             # GT resolution / NoisyLR resolution 
+in_ch: 1              # 1 for grayscale, 3 for RGB
+model_size: "tiny"    # "tiny" (1.0M params, submitted) or "small" (3.1M params, benchmarked but not submitted)
+
+# --- Optimization ---
+batch_size: 16
+epochs: 100
+lr: 0.0002
+weight_ssim: 0.2
+num_workers: 2   
+
+# --- Checkpointing ---
+ckpt_dir: "weights"
+val_every: 5
+save_every: 10

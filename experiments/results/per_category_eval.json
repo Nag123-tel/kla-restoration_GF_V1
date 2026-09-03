@@ -1,0 +1,65 @@
+{
+  "sparse_particles_on_substrate": {
+    "n": 148,
+    "bicubic_psnr": 19.28298551488567,
+    "model_psnr": 21.16417014921034,
+    "psnr_gain": 1.8811846343246685,
+    "bicubic_ssim": 0.44240173677334915,
+    "model_ssim": 0.5046997402568121,
+    "ssim_gain": 0.06229800348346293
+  },
+  "fiber_mesh": {
+    "n": 90,
+    "bicubic_psnr": 20.289079586664837,
+    "model_psnr": 22.187050938606262,
+    "psnr_gain": 1.8979713519414254,
+    "bicubic_ssim": 0.5226276338100433,
+    "model_ssim": 0.5830256048176023,
+    "ssim_gain": 0.06039797100755906
+  },
+  "dense_particle_aggregates": {
+    "n": 73,
+    "bicubic_psnr": 20.540078535471878,
+    "model_psnr": 23.501543884407983,
+    "psnr_gain": 2.9614653489361054,
+    "bicubic_ssim": 0.6028091842181063,
+    "model_ssim": 0.7120241845307285,
+    "ssim_gain": 0.10921500031262221
+  },
+  "porous_foam_membrane": {
+    "n": 67,
+    "bicubic_psnr": 21.143142803391413,
+    "model_psnr": 24.720354898652033,
+    "psnr_gain": 3.57721209526062,
+    "bicubic_ssim": 0.5360421627315123,
+    "model_ssim": 0.6797020675531075,
+    "ssim_gain": 0.14365990482159519
+  },
+  "grainy_blurry_particles": {
+    "n": 42,
+    "bicubic_psnr": 21.241414830798195,
+    "model_psnr": 26.9935333161127,
+    "psnr_gain": 5.752118485314504,
+    "bicubic_ssim": 0.44083643669173833,
+    "model_ssim": 0.6762042478436515,
+    "ssim_gain": 0.2353678111519132
+  },
+  "wires_rods": {
+    "n": 32,
+    "bicubic_psnr": 22.22721390426159,
+    "model_psnr": 27.740352526307106,
+    "psnr_gain": 5.513138622045517,
+    "bicubic_ssim": 0.44869560142979026,
+    "model_ssim": 0.6782680479809642,
+    "ssim_gain": 0.22957244655117393
+  },
+  "faceted_grain_boundary": {
+    "n": 23,
+    "bicubic_psnr": 22.25034050319506,
+    "model_psnr": 29.083242312721584,
+    "psnr_gain": 6.8329018095265255,
+    "bicubic_ssim": 0.4748851967894513,
+    "model_ssim": 0.7888056946837384,
+    "ssim_gain": 0.3139204978942871
+  }
+}

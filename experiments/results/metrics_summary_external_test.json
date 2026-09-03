@@ -1,0 +1,20 @@
+{
+  "num_images": 297,
+  "model": {
+    "psnr_mean": 23.624137415227665,
+    "ssim_mean": 0.6311387095587824,
+    "lpips_mean": 0.32672141758279766
+  },
+  "baseline_bicubic": {
+    "psnr_mean": 20.45546744809006,
+    "ssim_mean": 0.5098892313362372,
+    "lpips_mean": 0.4654859135347585
+  },
+  "checkpoint": "/content/drive/MyDrive/Naga Vyshnavi/kla-restoration/weights_synth_1p5x_rotate/best.pt",
+  "model_params": 1002457,
+  "scale": 2,
+  "eval_wall_clock_seconds": 10.275441408157349,
+  "device": "cuda",
+  "pytorch_version": "2.11.0+cu128",
+  "gpu_name": "Tesla T4"
+}
