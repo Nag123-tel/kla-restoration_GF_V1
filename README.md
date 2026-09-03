@@ -148,7 +148,35 @@ python train.py \
   --results_dir results
 ```
 
-`tiny` (1.0M params) is what produced the submitted `weights/best.pt` checkpoint. A
+`train.py` above reproduces the ORIGINAL (unaugmented, randomly-split)
+baseline pipeline. **It does NOT produce the submitted checkpoint.**
+
+The actual submitted checkpoint (`models/best.pt`) was produced by
+`train_stratified.py`, a wrapper that adds content-stratified splitting,
+category-weighted oversampling, rotation augmentation, and calibrated
+synthetic degradation on top of the same model/loss/logging as `train.py`.
+To reproduce the submitted checkpoint exactly:
+
+```bash
+python train_stratified.py \
+  --noisy_dir data/train/NoisyLR --gt_dir data/train/GT \
+  --manifest <path_to_val_split_FINAL.json> \
+  --scale 2 --patch_size 64 --batch_size 16 --epochs 100 --model_size tiny \
+  --lr 2e-4 --weight_ssim 0.2 --seed 42 --loss_type combined \
+  --oversample_categories "sparse_particles_on_substrate,fiber_mesh" \
+  --oversample_factor 1.5 --rotate_augment \
+  --synth_from_gt_dir <training-only_GT_folder> --calibrated_synth \
+  --ckpt_dir weights --results_dir results
+```
+
+`--manifest` needs the content-stratification manifest (built via the
+scripts in `experiments/`, using ResNet feature clustering + K-means --
+see `experiments/README.md` for the full methodology). Category
+stratification and oversampling are training-time-only concerns: they
+affect which images the model sees and how often, but nothing at
+inference/test time. `run.py`/`inference.py` have no category logic at
+all -- they process every input image identically, regardless of which
+content category it belongs to. A A
 `small` (3.1M params) variant was also trained and benchmarked as a comparison — it
 scored marginally higher on PSNR/SSIM/LPIPS but at ~1.8x the inference latency; `tiny`
 was chosen as the final submission for its stronger quality/throughput trade-off (see
