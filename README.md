@@ -5,6 +5,26 @@ Joint denoising + super-resolution model that restores NoisyLR images
 (degraded by speckle noise, additive Gaussian noise, and downsampling, in
 an undisclosed order) back to their GT resolution and quality.
 
+---
+
+## Phase 2 Results Summary
+
+Final checkpoint: `models/best.pt` (NAFNetSR-tiny, 1.0M params), trained with
+content-stratified data splitting, rotation augmentation, and calibrated
+synthetic degradation. Full experiment log and methodology in
+[`experiments/README.md`](experiments/README.md).
+
+| | Internal held-out val (475 img) | External test (297 img, zero overlap) |
+|---|---|---|
+| PSNR | 23.561 dB | 23.624 dB |
+| SSIM | 0.6167 | 0.6311 |
+| LPIPS | 0.3433 | 0.3267 |
+| Bicubic baseline PSNR | 20.444 dB | 20.455 dB |
+
+Real batch-8 throughput (matching `run.py`'s exact grading pipeline): **3.42 ms/image**.
+
+---
+
 
 - **Architecture**: [NAFNet](https://arxiv.org/abs/2204.04676) (Chen et al.,
   ECCV 2022, *"Simple Baselines for Image Restoration"*) encoder-decoder,
@@ -27,7 +47,9 @@ an undisclosed order) back to their GT resolution and quality.
   KLA-confirmed degradation spec, so you can generate additional
   (NoisyLR, GT) pairs from any GT-only images.
 
- `run.py`. Run it exactly as:
+## ⚠️ Mandatory submission entry point: `run.py`
+
+Per KLA's Final Submission Check announcement, the graded entry point for this submission is `run.py`, not `inference.py`. Run it exactly as:
 
 ```bash
 python run.py <input-dir> <output-dir>
