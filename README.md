@@ -290,5 +290,30 @@ trained model's metrics on the same validation images (see above). This is
 also exactly what the model's own global residual connection uses as its
 starting point (see `NAFNetSR.forward()` in `src/model.py`).
 
+---
 
+## Grand Finale Update
 
+A second, harder dataset (1,197 images, filename indicated "excluded" from
+the original release -- reasoning unconfirmed by KLA at submission time)
+was provided for the Grand Finale round, introducing significantly more
+morphological diversity than the original 7-category Phase 2 data,
+including genuinely novel biological/cellular SEM content never seen in
+prior training.
+
+**Final finale checkpoint** (currently deployed as `models/best.pt` /
+`weights/best.pt`): fine-tuned from the original Phase 2 checkpoint
+(not trained from scratch -- see `experiments/README.md` for why),
+achieving **23.697 dB PSNR / 0.6238 SSIM** on a leak-free, content-stratified
+114-image held-out validation set, with **no meaningful forgetting** of
+prior domains (Phase 1 natural photos: 27.736 dB, improved from 27.610 dB;
+original Phase 2 SEM domain: 23.611 dB, a noise-level dip from 23.664 dB).
+
+**Throughput**: `run.py` now runs FP16 inference by default (GPU only,
+falls back to FP32 automatically on CPU), verified end-to-end on all 1,197
+images with zero contract violations and PSNR/SSIM identical to FP32 to
+3-4 decimal places -- **1.95x faster** (4.721 -> 2.419 ms/image, batch=8, T4).
+
+Full methodology, the 13-category taxonomy, all tested/rejected variants
+(augmented fine-tuning, from-scratch training), and the complete comparison
+table are documented in `experiments/README.md` and `results_finale/`.
