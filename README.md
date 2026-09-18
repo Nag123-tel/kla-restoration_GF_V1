@@ -7,21 +7,33 @@ an undisclosed order) back to their GT resolution and quality.
 
 ---
 
-## Phase 2 Results Summary
+## Grand Finale Results Summary
 
 Final checkpoint: `models/best.pt` (NAFNetSR-tiny, 1.0M params), trained with
-content-stratified data splitting, rotation augmentation, and calibrated
-synthetic degradation. Full experiment log and methodology in
-[`experiments/README.md`](experiments/README.md).
+content-stratified data splitting (13 categories, incl. novel cellular
+content), fine-tuned from the original Phase 2 checkpoint at a conservative
+learning rate (5e-5). Rotation augmentation and calibrated synthetic
+degradation were tested on top of fine-tuning and explicitly REJECTED after
+measurement -- both underperformed plain fine-tuning (see forgetting-check
+and full comparison table in `experiments/README.md`).
 
-| | Internal held-out val (475 img) | External test (297 img, zero overlap) |
+| | Grand Finale held-out val (114 img, leak-free, 13-category stratified) |
+|---|---|
+| PSNR | 23.697 dB |
+| SSIM | 0.6238 |
+| LPIPS | 0.3414 |
+| Bicubic baseline PSNR / SSIM / LPIPS | 20.402 dB / 0.4961 / 0.4885 |
+
+**Forgetting check** (verifying fine-tuning didn't erode prior capability):
+
+| Domain | Old Phase 2 Model | Finale Fine-Tuned Model |
 |---|---|---|
-| PSNR | 23.561 dB | 23.624 dB |
-| SSIM | 0.6167 | 0.6311 |
-| LPIPS | 0.3433 | 0.3267 |
-| Bicubic baseline PSNR | 20.444 dB | 20.455 dB |
+| Phase 1 (natural photos, cross-domain) | 27.610 dB | 27.736 dB (improved) |
+| Phase 2 (original SEM training domain) | 23.664 dB | 23.611 dB (noise-level dip) |
 
-Real batch-8 throughput (matching `run.py`'s exact grading pipeline): **3.42 ms/image**.
+Real batch-8 throughput (matching `run.py`'s exact grading pipeline):
+**2.419 ms/image (FP16, verified)** -- 1.95x faster than FP32 (4.721 ms/image),
+confirmed with zero PSNR/SSIM change on the full 1,197-image dataset.
 
 ---
 
