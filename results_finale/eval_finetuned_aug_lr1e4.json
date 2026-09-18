@@ -1,0 +1,84 @@
+{
+  "label": "finetuned_aug_lr1e4",
+  "per_category": {
+    "cracked_porous_mixed": {
+      "n": 13,
+      "psnr": 20.635503622201774,
+      "ssim": 0.4824627087666438
+    },
+    "cellular_single_process": {
+      "n": 4,
+      "psnr": 24.248912930488586,
+      "ssim": 0.49588897079229355
+    },
+    "fine_grain_mixed": {
+      "n": 14,
+      "psnr": 21.212320923805237,
+      "ssim": 0.6521648594311306
+    },
+    "sparse_particles_on_substrate": {
+      "n": 6,
+      "psnr": 20.00028391679128,
+      "ssim": 0.38506285349527997
+    },
+    "fiber_mesh_on_substrate": {
+      "n": 12,
+      "psnr": 21.794882615407307,
+      "ssim": 0.6255289812882742
+    },
+    "porous_with_fiber_web": {
+      "n": 8,
+      "psnr": 24.43915694952011,
+      "ssim": 0.6567767187952995
+    },
+    "flat_featureless_substrate": {
+      "n": 9,
+      "psnr": 21.90865053070916,
+      "ssim": 0.5113812221421136
+    },
+    "cellular_branching": {
+      "n": 5,
+      "psnr": 27.53052568435669,
+      "ssim": 0.6860860109329223
+    },
+    "wires_rods": {
+      "n": 6,
+      "psnr": 28.520336945851643,
+      "ssim": 0.6766685942808787
+    },
+    "fine_dense_particle_aggregates": {
+      "n": 8,
+      "psnr": 23.388632982969284,
+      "ssim": 0.7182693555951118
+    },
+    "rough_fractured_surface": {
+      "n": 14,
+      "psnr": 26.15140506199428,
+      "ssim": 0.7825669007641929
+    },
+    "faceted_grain_boundary": {
+      "n": 5,
+      "psnr": 24.86723232269287,
+      "ssim": 0.6503952145576477
+    },
+    "dense_particle_aggregates": {
+      "n": 10,
+      "psnr": 27.317516326904297,
+      "ssim": 0.6657975316047668
+    }
+  },
+  "per_domain": {
+    "materials": {
+      "n": 105,
+      "psnr": 23.441214538755872,
+      "ssim": 0.6261690219243368
+    },
+    "cellular": {
+      "n": 9,
+      "psnr": 26.072031127081978,
+      "ssim": 0.6015539930926429
+    }
+  },
+  "overall_psnr": 23.648910585202668,
+  "overall_ssim": 0.6242257301744661
+}

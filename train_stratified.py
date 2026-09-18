@@ -54,6 +54,8 @@ def get_args():
     p.add_argument("--scale", type=int, default=2)
     p.add_argument("--in_ch", type=int, default=1)
     p.add_argument("--model_size", type=str, default="tiny", choices=["tiny", "small"])
+    p.add_argument("--pretrained_checkpoint", type=str, default=None,
+                    help="Path to an existing checkpoint (.pt) to initialize weights from.")
     p.add_argument("--batch_size", type=int, default=16)
     p.add_argument("--epochs", type=int, default=100)
     p.add_argument("--lr", type=float, default=2e-4)
@@ -307,6 +309,14 @@ def main():
     model = build_model(in_ch=args.in_ch, scale=args.scale, size=args.model_size).to(device)
     n_params = sum(p.numel() for p in model.parameters())
     print(f"Model: NAFNetSR ({args.model_size}), params={n_params:,}")
+
+    if args.pretrained_checkpoint:
+        pretrained = torch.load(args.pretrained_checkpoint, map_location=device)
+        model.load_state_dict(pretrained['model_state_dict'])
+        print(f"Loaded pretrained weights from {args.pretrained_checkpoint} "
+              f"(epoch {pretrained.get('epoch', '?')}) -- FINE-TUNING.")
+    else:
+        print("No --pretrained_checkpoint -- training from scratch.")
 
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.epochs)

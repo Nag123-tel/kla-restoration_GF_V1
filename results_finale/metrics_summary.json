@@ -1,0 +1,20 @@
+{
+  "num_images": 114,
+  "model": {
+    "psnr_mean": 23.697240666339273,
+    "ssim_mean": 0.6238333684833426,
+    "lpips_mean": 0.3413710220341097
+  },
+  "baseline_bicubic": {
+    "psnr_mean": 20.401907803719503,
+    "ssim_mean": 0.4960799636809449,
+    "lpips_mean": 0.4884816897020005
+  },
+  "checkpoint": "models/best.pt",
+  "model_params": 1002457,
+  "scale": 2,
+  "eval_wall_clock_seconds": 3.412381410598755,
+  "device": "cuda",
+  "pytorch_version": "2.11.0+cu128",
+  "gpu_name": "Tesla T4"
+}
